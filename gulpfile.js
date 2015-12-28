@@ -11,7 +11,7 @@ var sourcemaps = require("gulp-sourcemaps");
 var paths = {
   sass: ['src/scss/*.scss', 'src/scss/custom/*.scss'],
   templates: 'src/app/routes/**/*.tpl.html',
-  scripts: ['src/app/app.js', 'src/app/**/*.module.js', 'src/app/**/*.js'],
+  scripts: ['src/app/app.js', 'src/app/**/*.module.js', 'src/app/**/*.js', '!src/**/*.spec.js'],
   indexHtml: 'src/index.html',
   templateDest: 'www/app/routes',
   sassDest: 'www/css',
