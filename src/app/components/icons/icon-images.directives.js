@@ -26,10 +26,12 @@
             restrict: 'A',
             link: function link(scope, elem, attrs) {
                 scope.$watch(attrs[attr], function (val) {
+                    var src = "";
                     if (angular.isNumber(val)) {
                         var icon = getIconFn(val);
-                        elem.attr('src', (icon && icon.image) || '');
+                        src = (icon && icon.image) || '';
                     }
+                    elem.attr('src', src);
                 });
             }
         };
