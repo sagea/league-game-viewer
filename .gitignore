@@ -5,7 +5,6 @@ node_modules/
 platforms/
 plugins/
 resources/
-.io-config.json
 
 # IDE
 .idea/
@@ -14,10 +13,19 @@ resources/
 .DS_Store
 **/.DS_Store
 
+# Api Key
 src/app/_apiKey.run.js
 
+# development files
 www/js/
 www/css/
 www/app/
 www/lib/
+
+# ionic upload files
+.io-config.json
+ionic.project
+hooks
+
+
 

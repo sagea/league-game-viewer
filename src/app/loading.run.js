@@ -7,6 +7,9 @@
 
 
     function loading($state, $q, $ionicLoading, $rootScope, Summoner, Items, Champion, SummonerSpell) {
+
+        $state.go('loading');
+
         $ionicLoading.show();
         $q.all([
             Items.initLoad(),
@@ -15,14 +18,6 @@
         ]).then(function(res){
             $state.go('search-user');
             $ionicLoading.hide();
-        });
-
-
-        var initialLoadWatch = $rootScope.$on('$stateChangeSuccess', function () {
-            if (!Summoner.selected) {
-                $state.go('loading');
-            }
-            initialLoadWatch();
         });
     }
 
