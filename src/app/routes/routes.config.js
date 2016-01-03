@@ -10,8 +10,12 @@
         var summonerBase = 'app/routes/game/';
 
         $stateProvider
-            .state('search-user', {
+            .state('loading', {
                 url: '/',
+                template: '<div></div>'
+            })
+            .state('search-user', {
+                url: '/search-user',
                 templateUrl: 'app/routes/search-user/search-user.tpl.html',
                 controller: 'SearchUserCtrl as SearchCtrl'
             })
