@@ -17,6 +17,9 @@
             getSummoner: getSummoner,
             getMatchList: getMatchList,
             getMatch: getMatch,
+            getItems: getItems,
+            getChampions: getChampions,
+            getSummonerSpells: getSummonerSpells,
             getRecentSummonerGames: getRecentSummonerGames,
             getShards: getShards
         };
@@ -52,6 +55,24 @@
                     404: 'Match not found'
                 });
             })
+        }
+
+        function getItems(params, options){
+            return get('static-data/na/v1.2/item', params, options).catch(function(err){
+                return generateErrorResponse(err, {});
+            })
+        }
+
+        function getChampions(params, options){
+            return get('static-data/na/v1.2/champion', params, options).catch(function(err){
+                return generateErrorResponse(err, {})
+            })
+        }
+
+        function getSummonerSpells(params, options){
+            return get('static-data/na/v1.2/summoner-spell', params, options).catch(function(err){
+                return generateErrorResponse(err, {})
+            });
         }
 
         function getRecentSummonerGames(region, summonerId, params, options) {

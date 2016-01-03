@@ -8,16 +8,16 @@
         .directive('itemIconId', itemIconId);
 
 
-    function championIconId(GetIconInfo) {
-        return renderIconDirective('championIconId', GetIconInfo.champion)
+    function championIconId(Champion) {
+        return renderIconDirective('championIconId', Champion.getImageUrl)
     }
 
-    function summonerIconId(GetIconInfo) {
-        return renderIconDirective('summonerIconId', GetIconInfo.summoner)
+    function summonerIconId(SummonerSpell) {
+        return renderIconDirective('summonerIconId', SummonerSpell.getImageUrl)
     }
 
-    function itemIconId(GetIconInfo) {
-        return renderIconDirective('itemIconId', GetIconInfo.item)
+    function itemIconId(Items) {
+        return renderIconDirective('itemIconId', Items.getImageUrl)
     }
 
 
@@ -29,7 +29,7 @@
                     var src = "";
                     if (angular.isNumber(val)) {
                         var icon = getIconFn(val);
-                        src = (icon && icon.image) || '';
+                        src = icon || '';
                     }
                     elem.attr('src', src);
                 });
