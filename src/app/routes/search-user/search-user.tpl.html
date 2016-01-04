@@ -1,51 +1,44 @@
-<style>
-    .scroll-content {
-        display: table !important;
-        width: 100% !important;
-        height: 100% !important;
-    }
-    .scroll {
-        display: table-cell;
-        vertical-align: middle;
-    }
-</style>
-<ion-content>
-    <form name="findUserForm"
-          class="padding-vertical"
-          ng-submit="findUserForm.$valid && SearchCtrl.loadUser()">
-        <h2 class="text-center">Search Summoner</h2>
-            <div class="list list-inset">
-                <label class="item item-select padding">
-                        <span class="input-label">Select Region</span>
-                    <select name="region"
-                            ng-model="SearchCtrl.region"
-                            ng-required="true"
-                            ng-options="item for item in SearchCtrl.regionList">
-                    </select>
-                </label>
+<ion-view view-title="League Game Viewer">
+    <ion-content>
+        <form name="findUserForm"
+              class="padding-vertical"
+              ng-submit="findUserForm.$valid && SearchCtrl.loadUser()">
 
-                <label class="item item-input padding">
-                    <span class="input-label">Search Summoner</span>
+                <div class="list list-inset p-sm">
+                    <h5 class="text-center">Search Summoner</h5>
+                    <label class="item item-select p-xs">
+                        <span class="input-label">Region</span>
+                        <select name="region"
+                                ng-model="SearchCtrl.region"
+                                ng-required="true"
+                                ng-options="item for item in SearchCtrl.regionList">
+                        </select>
+                    </label>
+                    <label class="item item-input p-xs">
                     <input name="summonerName"
                            type="text"
                            ng-model="SearchCtrl.summonerName"
                            ng-focus="SearchCtrl.summonerName = ''"
                            placeholder="Summoner name"
                            ng-required="true">
-                </label>
+                    </label>
+                    <!--<label class=" padding">-->
+                        <!--&lt;!&ndash;<span class="input-label">Summoner</span>&ndash;&gt;-->
+                        <!---->
+                    <!--</label>-->
 
-                <div class="assertive padding text-center">
-                    <div ng-show="SearchCtrl.errorMessage">{{SearchCtrl.errorMessage}}</div>
-                    <div ng-show="findUserForm.region.$error.required">Region is required.</div>
-                    <div ng-show="findUserForm.summonerName.$error.required">Summoner name is required.</div>
+                    <!--<div class="assertive padding text-center">-->
+                    <!--<div ng-show="SearchCtrl.errorMessage">{{SearchCtrl.errorMessage}}</div>-->
+                    <!--</div>-->
+
+                    <button type="submit"
+                            class="button button-block button-positive ion-search icon-left"
+                            ng-disabled="SearchCtrl.loading">
+                        <ion-spinner icon="spiral" ng-show="SearchCtrl.loading"></ion-spinner>
+                        <span ng-show="!SearchCtrl.loading">Search</span>
+                    </button>
                 </div>
-
-                <button type="submit"
-                        class="button button-block button-positive ion-search icon-left"
-                        ng-disabled="SearchCtrl.loading">
-                    <ion-spinner icon="spiral" ng-show="SearchCtrl.loading"></ion-spinner>
-                    <span ng-show="!SearchCtrl.loading">Search Summoner</span>
-                </button>
-        </div>
-    </form>
-</ion-content>
+            <!--</div>-->
+        </form>
+    </ion-content>
+</ion-view>

@@ -16,7 +16,7 @@
             Champion.initLoad(),
             SummonerSpell.initLoad()
         ]).then(function(res){
-            $state.go('search-user');
+            $state.go('app.search-user');
             $ionicLoading.hide();
         });
     }

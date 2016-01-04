@@ -39,7 +39,7 @@
             console.log(vm.region, vm.summonerName);
             Summoner.getSummoner(vm.region, vm.summonerName).then(function(){
                 vm.loading = false;
-                $state.go('game.list')
+                $state.go('app.gameList')
             }, function(err){
                 vm.errorMessage = err.message;
                 vm.loading = false;

@@ -14,31 +14,55 @@
                 url: '/',
                 template: '<div></div>'
             })
-            .state('search-user', {
-                url: '/search-user',
-                templateUrl: 'app/routes/search-user/search-user.tpl.html',
-                controller: 'SearchUserCtrl as SearchCtrl'
-            })
-            .state('game', {
-                url: '/game',
+            .state('app', {
+                url: '/app',
                 abstract: true,
-                templateUrl: 'app/routes/game/game.tpl.html',
-                controller: function($ionicHistory, $state){
-                    this.searchUser = function(){
-                        $state.go('search-user')
-                    }
-                },
-                controllerAs: 'GameAbstractCtrl'
+                templateUrl: 'app/routes/app-template.tpl.html'
             })
-            .state('game.list', {
-                url: '/',
+            .state('app.search-user', {
+                url: '/search-user',
                 views: {
-                    gameList: {
+                    view: {
+                        templateUrl: 'app/routes/search-user/search-user.tpl.html',
+                        controller: 'SearchUserCtrl as SearchCtrl'
+                    }
+                }
+            })
+            .state('app.gameList', {
+                url: '/game/',
+                views: {
+                    view: {
                         templateUrl: summonerBase + 'game-list/game-list.tpl.html',
                         controller: 'GameListCtrl as HomeCtrl'
                     }
                 }
             });
+
+            //.state('search-user', {
+            //    url: '/search-user',
+            //    templateUrl: 'app/routes/search-user/search-user.tpl.html',
+            //    controller: 'SearchUserCtrl as SearchCtrl'
+            //})
+            //.state('game', {
+            //    url: '/game',
+            //    abstract: true,
+            //    templateUrl: 'app/routes/game/game.tpl.html',
+            //    controller: function($ionicHistory, $state){
+            //        this.searchUser = function(){
+            //            $state.go('search-user')
+            //        }
+            //    },
+            //    controllerAs: 'GameAbstractCtrl'
+            //})
+            //.state('app.list', {
+            //    url: '/',
+            //    views: {
+            //        gameList: {
+            //            templateUrl: summonerBase + 'game-list/game-list.tpl.html',
+            //            controller: 'GameListCtrl as HomeCtrl'
+            //        }
+            //    }
+            //});
 
         //$urlRouterProvider.otherwise('/');
 
