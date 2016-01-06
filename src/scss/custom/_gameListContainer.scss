@@ -1,0 +1,21 @@
+.list.game-list-container{
+  .item{
+    display: flex;
+    align-items: center;
+
+    .game-info{
+      width: 100%;
+
+      .game-stats{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .gameplay-stats{}
+        .time-stats{
+          width: 50%;
+        }
+      }
+    }
+  }
+}

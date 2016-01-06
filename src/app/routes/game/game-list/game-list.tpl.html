@@ -1,63 +1,99 @@
+<style>
+    .list.game-list-container{}
+    .list.game-list .item{
+        display: flex;
+        align-items: center;
+    }
+    .flex-align-center {
+        align-items: center;
+    }
+</style>
 <ion-view view-title="{{::HomeCtrl.summonerName}}">
     <ion-content>
-        <div class="list">
-            <div class="item"
-                 ng-repeat="game in HomeCtrl.matchList"
-                 ng-init="game.getMatch()">
-                <div class="row">
-                    <div class="col-25 text-center">
-                        <h4>{{game.subType}}</h4>
-                    </div>
-
-                    <div class="col-25 text-center">
-                        <h4 ng-class="::{'balanced':game.stats.win, 'assertive': !game.stats.win}">
-                            {{::game.stats.win ? 'Win': 'Loss'}}
-                        </h4>
-                    </div>
-
-                    <div class="col-25 text-center">
-                        <h4>{{::game.createdFormatted}}</h4>
-                    </div>
-                    <div class="col-25 text-center">
-                        <h4>{{::game.stats.gameLengthMinutes}} Min</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-20">
-                        <img src="" champion-icon-id="game.championId" style="max-width: 100%;" />
-                    </div>
-                    <div class="col-40 p-l-xs">
-                        {{::game.stats.championsKilled}} / {{::game.stats.numDeaths}} / {{::game.stats.assists}}
-                        <br />
-                        {{::game.stats.kda}}
-                        <small> KDA</small>
-                        <br />
-                        {{::game.stats.goldEarnedK}}
-                        <small> K</small>
-                    </div>
-                    <div class="col-40">
-                        {{::game.stats.minionsKilled || 0}} <small>Creeps</small>
-                         <br />
-                        {{::game.stats.turretsKilled || 0}} <small>Towers</small>
-                         <br />
-                        {{::game.stats.barracksKilled || 0}} <small>Inhibs</small>
+        <div class="list game-list-container">
+            <div class="item item-thumbnail-left"
+                 ng-repeat="game in HomeCtrl.matchList track by $index"
+                 ng-click="HomeCtrl.viewGame(game.gameId)">
+                <img champion-icon-id="game.championId"/>
+                <div class="game-info">
+                    <h3 ng-class="::{'balanced':game.stats.win, 'assertive': !game.stats.win}">
+                        {{::game.stats.win ? 'Victory': 'Defeat'}}
+                    </h3>
+                    <div class="game-stats">
+                        <p class="gameplay-stats">
+                            {{::game.stats.championsKilled}} / {{::game.stats.numDeaths}} / {{::game.stats.assists}}
+                            <br/>
+                            {{::game.stats.minionsKilled || 0}} Minions
+                            <br/>
+                            {{::game.stats.goldEarnedK || 0}}K Gold
+                        </p>
+                        <p class="text-center time-stats">
+                            {{::game.stats.gameLengthMinutes}} Min
+                            <br/>
+                            <small>{{::game.createdFormatted}}</small>
+                        </p>
                     </div>
                 </div>
-
-                <div class="clearfix p-l-xs p-r-xs">
-                    <div class="pull-left">
-                        <img src="" style="width: 24px;" summoner-icon-id="game.spell1" />
-                        <img src="" style="width: 24px;" summoner-icon-id="game.spell2" />
-                    </div>
-                    <div class="pull-right">
-                        <img src="" style="width: 24px;" item-icon-id="game.stats.item0" ng-if="::game.stats.item0" />
-                        <img src="" style="width: 24px;" item-icon-id="game.stats.item1" ng-if="::game.stats.item1" />
-                        <img src="" style="width: 24px;" item-icon-id="game.stats.item2" ng-if="::game.stats.item2" />
-                        <img src="" style="width: 24px;" item-icon-id="game.stats.item3" ng-if="::game.stats.item3" />
-                        <img src="" style="width: 24px;" item-icon-id="game.stats.item4" ng-if="::game.stats.item4" />
-                    </div>
-                </div>
+                <i class="icon ion-chevron-right"></i>
             </div>
+            <!--<div class="item"-->
+            <!--ng-repeat="game in HomeCtrl.matchList track by $index"-->
+            <!--ng-init="game.getMatch()"-->
+            <!--ng-click="HomeCtrl.viewGame(game.gameId)">-->
+            <!--<div class="row">-->
+            <!--<div class="col-25 text-center">-->
+            <!--<h4>{{game.subType}}</h4>-->
+            <!--</div>-->
+
+            <!--<div class="col-25 text-center">-->
+            <!--<h4 ng-class="::{'balanced':game.stats.win, 'assertive': !game.stats.win}">-->
+            <!--{{::game.stats.win ? 'Win': 'Loss'}}-->
+            <!--</h4>-->
+            <!--</div>-->
+
+            <!--<div class="col-25 text-center">-->
+            <!--<h4>{{::game.createdFormatted}}</h4>-->
+            <!--</div>-->
+            <!--<div class="col-25 text-center">-->
+            <!--<h4>{{::game.stats.gameLengthMinutes}} Min</h4>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="col-20">-->
+            <!--<img src="" champion-icon-id="game.championId" style="max-width: 100%;" />-->
+            <!--</div>-->
+            <!--<div class="col-40 p-l-xs">-->
+            <!--{{::game.stats.championsKilled}} / {{::game.stats.numDeaths}} / {{::game.stats.assists}}-->
+            <!--<br />-->
+            <!--{{::game.stats.kda}}-->
+            <!--<small> KDA</small>-->
+            <!--<br />-->
+            <!--{{::game.stats.goldEarnedK}}-->
+            <!--<small> K</small>-->
+            <!--</div>-->
+            <!--<div class="col-40">-->
+            <!--{{::game.stats.minionsKilled || 0}} <small>Creeps</small>-->
+            <!--<br />-->
+            <!--{{::game.stats.turretsKilled || 0}} <small>Towers</small>-->
+            <!--<br />-->
+            <!--{{::game.stats.barracksKilled || 0}} <small>Inhibs</small>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="clearfix p-l-xs p-r-xs">-->
+            <!--<div class="pull-left">-->
+            <!--<img src="" style="width: 24px;" summoner-icon-id="game.spell1" />-->
+            <!--<img src="" style="width: 24px;" summoner-icon-id="game.spell2" />-->
+            <!--</div>-->
+            <!--<div class="pull-right">-->
+            <!--<img src="" style="width: 24px;" item-icon-id="game.stats.item0" ng-if="::game.stats.item0" />-->
+            <!--<img src="" style="width: 24px;" item-icon-id="game.stats.item1" ng-if="::game.stats.item1" />-->
+            <!--<img src="" style="width: 24px;" item-icon-id="game.stats.item2" ng-if="::game.stats.item2" />-->
+            <!--<img src="" style="width: 24px;" item-icon-id="game.stats.item3" ng-if="::game.stats.item3" />-->
+            <!--<img src="" style="width: 24px;" item-icon-id="game.stats.item4" ng-if="::game.stats.item4" />-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
         </div>
     </ion-content>
 </ion-view>
