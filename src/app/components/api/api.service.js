@@ -21,6 +21,7 @@
             getChampions: getChampions,
             getSummonerSpells: getSummonerSpells,
             getRecentSummonerGames: getRecentSummonerGames,
+            getMaps: getMaps,
             getShards: getShards
         };
 
@@ -80,6 +81,12 @@
                 return generateErrorResponse(err, {
                     404: 'No games found'
                 })
+            })
+        }
+
+        function getMaps(params, options){
+            return get('static-data/na/v1.2/map', params, options).catch(function(err){
+                return generateErrorResponse(err, {});
             })
         }
 

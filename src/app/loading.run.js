@@ -6,7 +6,7 @@
         .run (loading);
 
 
-    function loading($state, $q, $ionicLoading, $rootScope, Summoner, Items, Champion, SummonerSpell) {
+    function loading($state, $q, $ionicLoading, $rootScope, Summoner, Items, Champion, SummonerSpell, Maps) {
 
         $state.go('loading');
 
@@ -14,8 +14,10 @@
         $q.all([
             Items.initLoad(),
             Champion.initLoad(),
-            SummonerSpell.initLoad()
+            SummonerSpell.initLoad(),
+            Maps.initLoad()
         ]).then(function(res){
+            console.log(res);
             $state.go('app.search-user');
             $ionicLoading.hide();
         });

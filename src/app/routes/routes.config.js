@@ -36,36 +36,22 @@
                         controller: 'GameListCtrl as HomeCtrl'
                     }
                 }
+            })
+            .state('app.game-viewer', {
+                url: '/game/:gameId',
+                views: {
+                    view: {
+                        templateUrl: summonerBase + 'game-viewer/game-viewer.tpl.html',
+                        controller: 'GameViewerCtrl as GameCtrl'
+                    }
+                },
+                resolve: {
+                    gameInfo: function($q, $stateParams, $ionicLoading, Api, Summoner, SelectedGame){
+                        $ionicLoading.show();
+                        return SelectedGame.getGame($stateParams.gameId);
+                    }
+                }
             });
-
-            //.state('search-user', {
-            //    url: '/search-user',
-            //    templateUrl: 'app/routes/search-user/search-user.tpl.html',
-            //    controller: 'SearchUserCtrl as SearchCtrl'
-            //})
-            //.state('game', {
-            //    url: '/game',
-            //    abstract: true,
-            //    templateUrl: 'app/routes/game/game.tpl.html',
-            //    controller: function($ionicHistory, $state){
-            //        this.searchUser = function(){
-            //            $state.go('search-user')
-            //        }
-            //    },
-            //    controllerAs: 'GameAbstractCtrl'
-            //})
-            //.state('app.list', {
-            //    url: '/',
-            //    views: {
-            //        gameList: {
-            //            templateUrl: summonerBase + 'game-list/game-list.tpl.html',
-            //            controller: 'GameListCtrl as HomeCtrl'
-            //        }
-            //    }
-            //});
-
-        //$urlRouterProvider.otherwise('/');
-
     }
 
 }());

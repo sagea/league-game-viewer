@@ -11,7 +11,10 @@
             'app.SummonerSpell',
             'app.Items',
             'app.Summoner',
-            'app.Match'
+            'app.Match',
+            'app.SelectedGame',
+            'app.Maps',
+            'app.filters'
         ])
         .run(AppRun);
 

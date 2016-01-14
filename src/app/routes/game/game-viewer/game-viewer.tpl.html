@@ -1,0 +1,43 @@
+<ion-view view-title="Game Viewer">
+    <ion-content>
+        <h2>Winning Team</h2>
+        <div class="list card" ng-repeat="player in ::GameCtrl.teams.players.victors track by $index">
+            <div ng-include="'player-cards'"></div>
+        </div>
+
+        <h2>Losing Team</h2>
+        <div class="list card" ng-repeat="player in ::GameCtrl.teams.players.losers track by $index">
+            <div ng-include="'player-cards'"></div>
+        </div>
+
+    </ion-content>
+</ion-view>
+
+
+<script type="text/ng-template" id="player-cards">
+    <div class="item item-avatar">
+        <img src="" champion-icon-id="player.championId"/>
+        <h2>{{::player.player.summonerName}}</h2>
+        <p style="display: flex; align-items: center;">
+            <img src="img/icons/kda.png"/>
+            {{::player.stats.kills}} / {{::player.stats.deaths}} / {{::player.stats.assists}}
+            <img class="p-l-xs" src="img/icons/minion.png"/>
+            {{::player.stats.minionsKilled || 0}}
+            <img class="p-l-xs" src="img/icons/gold-coins.png"/>
+            {{::player.stats.goldEarned | goldK}}
+        </p>
+    </div>
+    <div class="item item-body text-center">
+        <img src="" class="img-sm" item-icon-id="player.stats.item0"/>
+        <img src="" class="img-sm" item-icon-id="player.stats.item1"/>
+        <img src="" class="img-sm" item-icon-id="player.stats.item2"/>
+        <img src="" class="img-sm" item-icon-id="player.stats.item3"/>
+        <img src="" class="img-sm" item-icon-id="player.stats.item4"/>
+        <img src="" class="img-sm" item-icon-id="player.stats.item5"/>
+        <img src="" class="img-sm" item-icon-id="player.stats.item6"/>
+        <br/>
+        <img src="" class="img-sm" summoner-icon-id="player.spell1Id"/>
+        <img src="" class="img-sm" summoner-icon-id="player.spell2Id"/>
+
+    </div>
+</script>
